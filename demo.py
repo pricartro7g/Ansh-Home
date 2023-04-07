@@ -15,10 +15,12 @@ class Bot(BaseBot):
 
     username_to_id = {}
     async def on_user_join(self, user: User) -> None:
+        print(f"[JOIN   ] {user.username}")
         self.username_to_id[user.username] = user.id
         await self.highrise.chat(f"welcome to HOME, @{user.username}!")
         
     async def on_chat(self, user: User, message: str) -> None:  
+        print(f"[CHAT   ] {user.username}: {message}")
         """if message.startswith("/cloud1"):
             await self.highrise.teleport(user.id, Position(12,20,1.5,"FrontRight"))
         if message.startswith("/cloud2"):
@@ -355,7 +357,15 @@ class Bot(BaseBot):
     async def on_tip(self, sender: User, receiver: User, tip: Item) -> None:
         BotName = "IronManBot"
         if receiver.username == BotName:
+            print(f"[TIP    ] {sender.username} -> {tip} -> BOT: {receiver.username}")
             await self.highrise.chat(f"Thank you @{sender.username} for tipping {tip.amount} to Me\n But from now don't tip me because I'm a Bot and the Gold can't be taken from me back Later.\nThank You")
         else:
+            print(f"[TIP    ] {sender.username} -> {tip} -> {receiver.username}")
             await self.highrise.chat(f"Thank you {sender.username} for tipping {tip.amount} to {receiver.username}!")
         pass
+    async def on_user_leave(self, user: User) -> None:
+        """On a user leaving the room."""
+        print(f"[LEAVE  ] {user.username}")
+    async def on_whisper(self, user: User, message: str) -> None:
+        """On a whisper."""
+        print(f"[WHISPER] {user.username}: {message}")
