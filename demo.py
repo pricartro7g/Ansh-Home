@@ -9,7 +9,7 @@ OffenseProof = [['!!!!!', 1], ['@@@@', 1], ['$$$$$', 1], ['####', 1]]
 class Bot(BaseBot):
 
     async def on_start(self, session_metadata: SessionMetadata) -> None:
-        await self.highrise.walk_to(Position(15,6.75,4,"FrontRight"))
+        await self.highrise.walk_to(Position(7.5,0.4,1.5,"FrontLeft"))
 
         pass
 
