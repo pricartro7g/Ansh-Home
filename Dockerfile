@@ -13,5 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the demo.py script to the container
 COPY demo.py .
 
+# Expose port 8000
+EXPOSE 8000
+
 # Set the command to run the demo.py script with the specified arguments
 CMD ["python", "demo.py", "highrise", "Ansh:Bot", "641594f85b41ee085ed62db0", "98b2a2bf950cfc7fd4e6261203bc8279b3ed8b877c1bb7e73b404f9c4d459f7a"]
